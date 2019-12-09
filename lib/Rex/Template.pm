@@ -117,16 +117,18 @@ sub parse {
   );
 
   eval {
-    no strict 'refs'; ## no critic ProhibitNoStrict
     no strict 'vars'; ## no critic ProhibitNoStrict
 
     for my $var ( keys %{$vars} ) {
       Rex::Logger::debug("Registering: $var");
+
+      my $ref_to_var = qualify_to_ref($var);
+
       unless ( ref( $vars->{$var} ) ) {
-        $$var = \$vars->{$var};
+        $ref_to_var = \$vars->{$var};
       }
       else {
-        $$var = $vars->{$var};
+        $ref_to_var = $vars->{$var};
       }
     }
 
