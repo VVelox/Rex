@@ -9,6 +9,7 @@ Revision history for Rex
  - Document mkdir options
 
  [ENHANCEMENTS]
+ - Add on_change option for mkdir
 
  [MAJOR]
 
